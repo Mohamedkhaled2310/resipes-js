@@ -41,48 +41,28 @@ function getApi(query) {
 }
 
 function display(response) {
-   
-    resipesContainer.innerHTML = '';
+    var str = '';
 
     if (response.length === 0) {
+        alert('The word not found.');
         return;
     }
 
     for (var i = 0; i < response.length; i++) {
-        var colDiv = document.createElement('div');
-        colDiv.classList.add('col-md-4', 'mb-4');
-        colDiv.setAttribute('id', response[i].recipe_id);
-
-        var recipeBoxDiv = document.createElement('div');
-        recipeBoxDiv.classList.add('resipe-box', 'make-pointer', 'bg-light', 'shadow-lg', 'border', 'rounded');
-
-        var recipeImgDiv = document.createElement('div');
-        recipeImgDiv.classList.add('resipe-img');
-
-        var img = document.createElement('img');
-        img.classList.add('w-100');
-        img.setAttribute('src', response[i].image_url);
-        img.setAttribute('alt', '');
-
-        recipeImgDiv.appendChild(img);
-        recipeBoxDiv.appendChild(recipeImgDiv);
-
-        var contentDiv = document.createElement('div');
-        contentDiv.classList.add('content', 'px-2');
-
-        var title = document.createElement('h3');
-        title.classList.add('my-3');
-        title.textContent = response[i].title;
-
-        var publisher = document.createElement('p');
-        publisher.textContent = response[i].publisher;
-
-        contentDiv.appendChild(title);
-        contentDiv.appendChild(publisher);
-        recipeBoxDiv.appendChild(contentDiv);
-        colDiv.appendChild(recipeBoxDiv);
-        resipesContainer.appendChild(colDiv);
+        str += 
+        `<div class="col-md-4 mb-4" id=${response[i].recipe_id}>
+            <div class="resipe-box make-pointer bg-light shadow-lg border rounded">
+                <div class="resipe-img">
+                    <img src=${response[i].image_url} class='w-100' alt="">
+                </div>
+                <div class="content px-2">
+                    <h3 class="my-3">${response[i].title}</h3>
+                    <p>${response[i].publisher}</p>
+                </div>
+            </div>
+        </div>`;
     }
+    resipesContainer.innerHTML = str;
     window.location.href = '#resipes-container';
     console.log(response);
 }
