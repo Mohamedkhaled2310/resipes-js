@@ -41,7 +41,7 @@ function getApi(query) {
 }
 
 function display(response) {
-    
+   
     resipesContainer.innerHTML = '';
 
     if (response.length === 0) {
@@ -62,7 +62,7 @@ function display(response) {
         var img = document.createElement('img');
         img.classList.add('w-100');
         img.setAttribute('src', response[i].image_url);
-        img.setAttribute('alt', 'resipeImg');
+        img.setAttribute('alt', '');
 
         recipeImgDiv.appendChild(img);
         recipeBoxDiv.appendChild(recipeImgDiv);
@@ -74,8 +74,8 @@ function display(response) {
         title.classList.add('my-3');
         title.textContent = response[i].title;
 
-        var desc = document.createElement('p');
-        desc.textContent = response[i].publisher;
+        var publisher = document.createElement('p');
+        publisher.textContent = response[i].publisher;
 
         contentDiv.appendChild(title);
         contentDiv.appendChild(publisher);
